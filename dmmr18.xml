@@ -5,9 +5,9 @@
 		</RegExp>
 	</NfoUrl>
 	<CreateSearchUrl clearbuffers="no" dest="3">
-		<RegExp input="$$2" output="&lt;url&gt;http://www.dmm.co.jp/search/=/searchstr=\1&lt;/url&gt;" dest="3">
+		<RegExp input="$$2" output="&lt;url&gt;http://www.dmm.co.jp/search/=/searchstr=\1/n1=FgRCTw9VBA4GCF5WXA__/&lt;/url&gt;" dest="3">
 			<RegExp input="$$1" output="\2-\3" dest="2">
-				<expression>(%5b)?([a-zA-Z]{2,5})\-?([0-9]{2,5})(%5d)?</expression>
+				<expression>(%5b)?([a-zA-Z0-9]{2,5})\-?([0-9]{2,5})(%5d)?</expression>
 			</RegExp>
 			<expression />
 		</RegExp>
@@ -31,8 +31,9 @@
     
 	<GetDetails dest="4">
 		<RegExp input="$$8" output="&lt;details&gt;\1&lt;/details&gt;" dest="4">
+            
 			<RegExp input="$$1" output="&lt;title&gt;\1&lt;/title&gt;" dest="8">
-				<expression>&lt;h1.*?&gt;(.*?)&lt;/h1&gt;</expression>
+				<expression noclean="1">&lt;h1.*?&gt;(.*?)&lt;/h1&gt;</expression>
 			</RegExp>
 			
             <!--td align="right" valign="top" class="nw">発売日：</td>
@@ -60,7 +61,7 @@
             </tr-->
             
 			<RegExp input="$$1" output="&lt;studio&gt;\1&lt;/studio&gt;" dest="8+">
-				<expression>"&gt;&lt;a href="/mono/dvd/-/list/=/article=maker/id=[0-9]+/"&gt;(.*?)&lt;/a&gt;</expression>
+				<expression noclean="1">"&gt;&lt;a href="/mono/dvd/-/list/=/article=maker/id=[0-9]+/"&gt;(.*?)&lt;/a&gt;</expression>
 			</RegExp>
             
             
@@ -76,12 +77,12 @@
 				<RegExp input="$$1" output="\1" dest="10">
 					<expression noclean="1">&lt;td align="right" valign="top" class="nw"&gt;出演者：&lt;/td&gt;(.*?)&lt;/td&gt;</expression>
 				</RegExp>
-				<expression repeat="yes">&lt;a href="/mono/dvd/-/list/=/article=actress/id=[0-9]+/"&gt;(.*?)&lt;/a&gt;</expression>
+				<expression repeat="yes" noclean="1">&lt;a href="/mono/dvd/-/list/=/article=actress/id=[0-9]+/"&gt;(.*?)&lt;/a&gt;</expression>
 			</RegExp>
             
             
 			<RegExp input="$$1" output="&lt;director&gt;\1&lt;/director&gt;" dest="8+">
-				<expression>&lt;a href="/mono/dvd/-/list/=/article=director/id=[0-9]+/"&gt;(.*?)&lt;/a&gt;</expression>
+				<expression noclean="1">director/id=[0-9]+/"&gt;(.*?)&lt;/a&gt;</expression>
 			</RegExp>
             
             <!--
